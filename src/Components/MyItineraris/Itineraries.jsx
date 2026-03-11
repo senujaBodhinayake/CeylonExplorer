@@ -208,11 +208,11 @@ const Itineraries = () => {
   const [endDate, setEndDate] = useState("");
   const [error, setError] = useState("");
 
-  const API_URL = "http://localhost:5000";
+  //const API_URL = "http://localhost:5000";
 
   const fetchDestinations = async () => {
     try {
-      const response = await axios.get(`${API_URL}/itinerary`);
+      const response = await axios.get(`/itinerary`);
       setDestinations(response.data);
       console.log(response.data);
     } catch (err) {
@@ -244,7 +244,7 @@ const Itineraries = () => {
 
     try {
       console.log("Submitting:", payload);
-      await axios.post(`${API_URL}/itinerary`, payload);
+      await axios.post(`/itinerary`, payload);
 
       setNewDestination("");
       fetchDestinations();
@@ -270,7 +270,7 @@ const Itineraries = () => {
         const payload = { destination: newDestinationName };
         console.log("Updating id:", id, "payload:", payload);
 
-        await axios.put(`${API_URL}/itinerary/${id}`, payload);
+        await axios.put(`/itinerary/${id}`, payload);
         fetchDestinations();
       } catch (err) {
         setError("Error updating destination");
@@ -292,7 +292,7 @@ const Itineraries = () => {
 
     try {
       console.log("Deleting id:", id);
-      await axios.delete(`${API_URL}/itinerary/${id}`);
+      await axios.delete(`/itinerary/${id}`);
       setDestinations((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       setError("Error deleting destination");

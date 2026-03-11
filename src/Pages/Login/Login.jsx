@@ -23,7 +23,7 @@ const Login = () => {
         {
             if(name && email && password)
            try {
-            const response = await axios.post('http://localhost:5000/sign-up', { name, email, password });
+            const response = await axios.post('/sign-up', { name, email, password });
             console.log(response);
             alert("Registration successful!");
           setLoading(false);
@@ -41,7 +41,7 @@ const Login = () => {
         }
         else{
             try{
-              const response = await axios.post('http://localhost:5000/login', { email, password });
+              const response = await axios.post('/login', { email, password });
               console.log(response);
           alert("Login successful!")
           navigate('/');
@@ -58,7 +58,7 @@ const Login = () => {
     
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/user-data'); // Example API to fetch user data
+        const response = await axios.get('/user-data'); // Example API to fetch user data
         setUserData(response.data); // Set the fetched data in state
       } catch (err) {
         setError(err.response?.data?.error || 'An error occurred while fetching user data');
